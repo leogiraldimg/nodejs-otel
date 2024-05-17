@@ -1,0 +1,60 @@
+{
+    "name": "nodejs-otel",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "prebuild": "rimraf dist",
+        "build": "tsc",
+        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+        "types:check": "tsc --noEmit --pretty",
+        "lint": "eslint \"{src}/**/*.ts\" --no-error-on-unmatched-pattern",
+        "lint:fix": "eslint \"{src}/**/*.ts\" --no-error-on-unmatched-pattern --fix",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:cov": "jest --coverage"
+    },
+    "author": "Leonardo Giraldi Moreno Giuranno",
+    "license": "ISC",
+    "dependencies": {
+        "cross-env": "^7.0.3",
+        "dotenv": "^16.4.5",
+        "rimraf": "^5.0.7"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.12.12",
+        "@typescript-eslint/eslint-plugin": "^7.9.0",
+        "@typescript-eslint/parser": "^7.9.0",
+        "eslint": "^8.57.0",
+        "jest": "^29.7.0",
+        "nodemon": "^3.1.0",
+        "ts-jest": "^29.1.2",
+        "ts-node": "^10.9.2",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "^5.4.5"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "js",
+            "json",
+            "ts"
+        ],
+        "rootDir": "src",
+        "testRegex": ".*\\.test\\.ts$",
+        "transform": {
+            "^.+\\.(t|j)s$": "ts-jest"
+        },
+        "collectCoverageFrom": [
+            "**/*.(t|j)s"
+        ],
+        "coverageDirectory": "../coverage",
+        "testEnvironment": "node",
+        "moduleNameMapper": {
+            "^@/(.*)$": "<rootDir>/$1"
+        },
+        "coveragePathIgnorePatterns": [
+            "node_modules/*"
+        ]
+    }
+}
