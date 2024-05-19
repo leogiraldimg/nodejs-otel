@@ -7,3 +7,6 @@ export * from "./listTaskById.input.boundary.mock";
 export * from "./updateTask.ds.gateway.mock";
 export * from "./updateTask.output.boundary.mock";
 export * from "./updateTask.input.boundary.mock";
+export * from "./deleteTask.ds.gateway.mock";
+export * from "./deleteTask.output.boundary.mock";
+export * from "./deleteTask.input.boundary.mock";
