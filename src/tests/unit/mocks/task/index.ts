@@ -10,3 +10,4 @@ export * from "./updateTask.input.boundary.mock";
 export * from "./deleteTask.ds.gateway.mock";
 export * from "./deleteTask.output.boundary.mock";
 export * from "./deleteTask.input.boundary.mock";
+export * from "./task.repository.typeorm.mock";

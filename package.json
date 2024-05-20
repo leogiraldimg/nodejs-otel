@@ -13,18 +13,25 @@
         "test": "jest",
         "test:watch": "jest --watch",
         "test:cov": "jest --coverage",
-        "test:unit": "jest --testPathPattern src/tests/unit/.*test.ts"
+        "test:unit": "jest --testPathPattern src/tests/unit/.*test.ts",
+        "migration:dev": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:run -d src/infra/datasource/typeorm/ds.typeorm.ts",
+        "migration:prod": "cross-env NODE_ENV=production typeorm-ts-node-commonjs migration:run -d src/infra/datasource/typeorm/ds.typeorm.js"
     },
     "author": "Leonardo Giraldi Moreno Giuranno",
     "license": "ISC",
     "dependencies": {
         "cross-env": "^7.0.3",
         "dotenv": "^16.4.5",
-        "rimraf": "^5.0.7"
+        "pg": "^8.11.5",
+        "rimraf": "^5.0.7",
+        "typeorm": "^0.3.20",
+        "uuid": "^9.0.1",
+        "zod": "^3.23.8"
     },
     "devDependencies": {
         "@types/jest": "^29.5.12",
         "@types/node": "^20.12.12",
+        "@types/uuid": "^9.0.8",
         "@typescript-eslint/eslint-plugin": "^7.9.0",
         "@typescript-eslint/parser": "^7.9.0",
         "eslint": "^8.57.0",
