@@ -15,13 +15,16 @@
         "test:cov": "jest --coverage",
         "test:unit": "jest --testPathPattern src/tests/unit/.*test.ts",
         "migration:dev": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:run -d src/infra/datasource/typeorm/ds.typeorm.ts",
-        "migration:prod": "cross-env NODE_ENV=production typeorm-ts-node-commonjs migration:run -d src/infra/datasource/typeorm/ds.typeorm.js"
+        "migration:prod": "cross-env NODE_ENV=production typeorm-ts-node-commonjs migration:run -d src/infra/datasource/typeorm/ds.typeorm.js",
+        "start": "cross-env NODE_ENV=development nodemon -r tsconfig-paths/register src/app.ts"
     },
     "author": "Leonardo Giraldi Moreno Giuranno",
     "license": "ISC",
     "dependencies": {
+        "@fastify/cors": "^9.0.1",
         "cross-env": "^7.0.3",
         "dotenv": "^16.4.5",
+        "fastify": "^4.27.0",
         "pg": "^8.11.5",
         "rimraf": "^5.0.7",
         "typeorm": "^0.3.20",
@@ -41,6 +44,7 @@
         "ts-jest": "^29.1.2",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
+        "typeorm-extension": "^3.5.1",
         "typescript": "^5.4.5"
     },
     "jest": {
