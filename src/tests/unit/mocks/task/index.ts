@@ -11,3 +11,7 @@ export * from "./deleteTask.ds.gateway.mock";
 export * from "./deleteTask.output.boundary.mock";
 export * from "./deleteTask.input.boundary.mock";
 export * from "./task.repository.typeorm.mock";
+export * from "./createTask.controller.input.boundary.mock";
+export * from "./deleteTask.controller.input.boundary.mock";
+export * from "./listTaskById.controller.input.boundary.mock";
+export * from "./updateTask.controller.input.boundary.mock";
