@@ -10,6 +10,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_TYPE: postgres
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_NAME: tasks-manager
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: tasks-manager
+        ports:
+          - "5432:5432"
+
     strategy:
       matrix:
         node-version: [18.x]
