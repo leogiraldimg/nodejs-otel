@@ -37,7 +37,7 @@ class CreateTaskInteractor implements CreateTaskInputBoundary {
         if (!task.isDescriptionValid()) {
             return this.outputBoundary.presentCreateTaskInvalidDescription(
                 new CreateTaskInvalidAttributeException(
-                    "Descricão da tarefa inválida"
+                    "Descrição da tarefa inválida"
                 )
             );
         }
