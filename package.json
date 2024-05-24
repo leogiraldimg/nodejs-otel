@@ -12,8 +12,9 @@
         "lint:fix": "eslint \"{src}/**/*.ts\" --no-error-on-unmatched-pattern --fix",
         "test": "jest",
         "test:watch": "jest --watch",
-        "test:cov": "jest --coverage",
+        "test:cov": "jest --coverage --runInBand",
         "test:unit": "jest --testPathPattern src/tests/unit/.*test.ts",
+        "test:integration": "jest --testPathPattern src/tests/integration/.*test.ts --runInBand",
         "migration:dev": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:run -d src/infra/datasource/typeorm/ds.typeorm.ts",
         "migration:prod": "cross-env NODE_ENV=production typeorm-ts-node-commonjs migration:run -d src/infra/datasource/typeorm/ds.typeorm.js",
         "start": "cross-env NODE_ENV=development nodemon -r tsconfig-paths/register src/app.ts"
@@ -67,7 +68,10 @@
             "^@/(.*)$": "<rootDir>/$1"
         },
         "coveragePathIgnorePatterns": [
-            "node_modules/*"
+            "node_modules/*",
+            "src/app.ts",
+            "src/infra/datasource/typeorm/migrations/*",
+            "src/infra/datasource/typeorm/ds.typeorm.ts"
         ]
     }
 }
