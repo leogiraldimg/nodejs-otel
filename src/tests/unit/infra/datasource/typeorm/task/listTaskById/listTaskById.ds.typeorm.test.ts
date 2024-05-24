@@ -39,13 +39,19 @@ describe("ListTaskByIdDsTypeorm", () => {
 
     describe("getById", () => {
         it("should return response model", async () => {
-            taskRepositoryTypeormMock.findOneByOrFail.mockResolvedValue(
-                dataMapper
-            );
+            taskRepositoryTypeormMock.findOneBy.mockResolvedValue(dataMapper);
 
             const result = await ds.getById("1");
 
             expect(result).toEqual(responseModel);
+        });
+
+        it("should return null when not exists", async () => {
+            taskRepositoryTypeormMock.findOneBy.mockResolvedValue(null);
+
+            const result = await ds.getById("1");
+
+            expect(result).toBeNull();
         });
     });
 });

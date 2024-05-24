@@ -11,10 +11,10 @@ class ListTaskByIdDsTypeorm implements ListTaskByIdDsGateway {
         this.repository = repository;
     }
 
-    async getById(id: string): Promise<ListTaskByIdDsResponseModel> {
-        const entity = await this.repository.findOneByOrFail({ id });
+    async getById(id: string): Promise<ListTaskByIdDsResponseModel | null> {
+        const entity = await this.repository.findOneBy({ id });
 
-        return new ListTaskByIdDsResponseModel(entity);
+        return entity && new ListTaskByIdDsResponseModel(entity);
     }
 }
 

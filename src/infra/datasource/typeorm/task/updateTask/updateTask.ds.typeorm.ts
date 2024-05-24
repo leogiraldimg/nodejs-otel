@@ -12,10 +12,10 @@ class UpdateTaskDsTypeorm implements UpdateTaskDsGateway {
         this.repository = repository;
     }
 
-    async getById(id: string): Promise<UpdateTaskDsResponseModel> {
-        const entity = await this.repository.findOneByOrFail({ id });
+    async getById(id: string): Promise<UpdateTaskDsResponseModel | null> {
+        const entity = await this.repository.findOneBy({ id });
 
-        return new UpdateTaskDsResponseModel(entity);
+        return entity && new UpdateTaskDsResponseModel(entity);
     }
 
     async update(
