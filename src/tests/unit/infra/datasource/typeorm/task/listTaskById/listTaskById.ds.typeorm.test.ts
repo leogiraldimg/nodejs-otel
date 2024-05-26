@@ -1,3 +1,4 @@
+import "@/tests/unit/mocks/observability";
 import { taskRepositoryTypeormMock } from "@/tests/unit/mocks/task";
 
 import {

@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { FastifyRequest } from "fastify";
 
+import "@/tests/unit/mocks/observability";
 import {
     createTaskControllerInputBoundaryMock,
     deleteTaskControllerInputBoundaryMock,
