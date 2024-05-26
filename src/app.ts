@@ -34,34 +34,45 @@ import {
     ListTaskByIdInteractor,
     UpdateTaskInteractor,
 } from "@/useCases/task";
+import {
+    OpenTelemetry,
+    LoggerOpenTelemetry,
+} from "@/infra/observability/opentelemetry";
 
-const fastify = Fastify({
-    logger: process.env.NODE_ENV !== "test" ? true : false,
-});
+if (process.env.NODE_ENV !== "test") {
+    const otel = new OpenTelemetry();
+    otel.startSdk();
+}
 
-fastify.register(cors);
+const logger = new LoggerOpenTelemetry();
 
 if (process.env.NODE_ENV !== "test") {
     dsTypeorm
         .initialize()
         .then(async (ds) => {
-            console.log(
+            logger.info(
                 "Conexão com o banco de dados estabelecida com sucesso!"
             );
 
             if (process.env.NODE_ENV === "development") {
-                console.log("Executando seeders...");
+                logger.info("Executando seeders...");
                 await runSeeders(ds);
-                console.log("Seeders executados com sucesso!");
+                logger.info("Seeders executados com sucesso!");
             }
         })
         .catch((error) => {
-            console.log(
+            logger.fatal(
                 `Erro ao estabelecer a conexão com o banco de dados: ${error}`
             );
             process.exit(1);
         });
 }
+
+const fastify = Fastify({
+    logger: process.env.NODE_ENV !== "test" ? logger : false,
+});
+
+fastify.register(cors);
 
 const taskController = new TaskController(
     new CreateTaskController(
@@ -139,10 +150,10 @@ if (process.env.NODE_ENV !== "test") {
             port,
         })
         .then(() => {
-            console.log(`Servidor iniciado na porta ${port}`);
+            logger.info(`Servidor iniciado na porta ${port}`);
         })
         .catch((error) => {
-            console.log(`Erro ao iniciar o servidor: ${error}`);
+            logger.fatal(`Erro ao iniciar o servidor: ${error}`);
             process.exit(1);
         });
 }
